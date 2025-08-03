@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>AR Меню</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        function redirectToPlatform() {
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            if (/android/i.test(userAgent)) {
+                window.location.href = "android.html";
+            } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                window.location.href = "ios.html";
+            } else {
+                document.getElementById("message").innerText = "Платформа не поддерживается.";
+            }
+        }
+    </script>
+</head>
+<body onload="redirectToPlatform()">
+    <h1>Добро пожаловать в AR-меню</h1>
+    <p id="message"></p>
+</body>
+</html>
