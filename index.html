@@ -1,13 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>AR Menu</title>
-    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <title>AR Меню</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        function redirectToPlatform() {
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            if (/android/i.test(userAgent)) {
+                window.location.href = "android.html";
+            } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                window.location.href = "ios.html";
+            } else {
+                document.getElementById("message").innerText = "Платформа не поддерживается.";
+            }
+        }
+    </script>
 </head>
-<body>
-    <h1>Fried Eggs</h1>
-    <model-viewer src="models/fried_eggs_android.glb" ios-src="models/fried_eggs_ios.usdz" ar ar-modes="scene-viewer webxr quick-look" auto-rotate camera-controls style="width: 300px; height: 300px;">
-    </model-viewer>
+<body onload="redirectToPlatform()">
+    <h1>Добро пожаловать в AR-меню</h1>
+    <p id="message"></p>
 </body>
 </html>
